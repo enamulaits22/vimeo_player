@@ -19,7 +19,11 @@ class DetailsPageState extends State<DetailsPage> {
             BlocConsumer<VideoPlayerCubit, VideoPlayerState>(
               listener: (context, state) {
                 if (!state.isSupportedPIP) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sorry your device is not supported PIP mode!')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Sorry your device is not supported PIP mode!'),
+                    ),
+                  );
                 }
               },
               builder: (context, state) {

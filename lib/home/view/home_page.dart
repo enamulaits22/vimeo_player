@@ -37,33 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        if (state.isVisibleMiniPlayer) {
-                          BlocProvider.of<VideoPlayerCubit>(context).forceDisposeVideo();
-                        }
-                        BlocProvider.of<VideoPlayerCubit>(context).setUpVideoPlayer(
-                          videoId: "358296408"
-                        ).then((value) {
-                          Future.delayed(Duration(milliseconds: miliseconds), () {
-                          controller.animateToHeight(state: PanelState.MAX);
-                          miliseconds = 50;
-                        });
-                        });
+                        handlePlayVideo(state: state, context: context, videoID: "358296408");
                       },
                       child: const Text('video 1'),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (state.isVisibleMiniPlayer) {
-                          BlocProvider.of<VideoPlayerCubit>(context).forceDisposeVideo();
-                        }
-                        BlocProvider.of<VideoPlayerCubit>(context).setUpVideoPlayer(
-                          videoId: "560637260"
-                        ).then((value) {
-                          Future.delayed(Duration(milliseconds: miliseconds), () {
-                          controller.animateToHeight(state: PanelState.MAX);
-                          miliseconds = 50;
-                        });
-                        });
+                        handlePlayVideo(state: state, context: context, videoID: "560637260");
                       },
                       child: const Text('video 2'),
                     ),
@@ -87,5 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  void handlePlayVideo({
+    required VideoPlayerState state,
+    required BuildContext context,
+    required String videoID,
+  }) {
+    if (state.isVisibleMiniPlayer) {
+      BlocProvider.of<VideoPlayerCubit>(context).forceDisposeVideo();
+    }
+    BlocProvider.of<VideoPlayerCubit>(context).setUpVideoPlayer(videoId: videoID).then((value) {
+      Future.delayed(Duration(milliseconds: miliseconds), () {
+        controller.animateToHeight(state: PanelState.MAX);
+        miliseconds = 50;
+      });
+    });
   }
 }

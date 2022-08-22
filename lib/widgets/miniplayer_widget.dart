@@ -49,16 +49,16 @@ class MiniPlayerWidget extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
+                                children: [
                                   Flexible(
                                     child: Text(
-                                      'video title',
+                                      state.videoTitle,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   Flexible(
                                     child: Text(
-                                      'selectedVideo author username',
+                                      state.videoAuthor,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
