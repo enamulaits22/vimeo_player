@@ -24,11 +24,9 @@ class MyApp extends StatelessWidget {
       child: BlocProvider(
         create: (context) => VideoPlayerCubit(videoRepository: VideoRepository()),
         child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Vimeo Player Demo',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
+          theme: ThemeData.dark(),
           home: const NavigationBarPage(),
         ),
       ),

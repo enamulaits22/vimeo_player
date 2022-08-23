@@ -25,43 +25,55 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
       create: (context) => NavigationCubit(),
       child: BlocBuilder<NavigationCubit, int>(
         builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Vimeo video player'),
-            ),
-            body: PageView(
-              controller: pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: _widgetOptions,
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: state,
-              onTap: (index) {
-                context
-                    .read<NavigationCubit>()
-                    .onItemTapped(index);
-                changeTab(index);
-              },
-              elevation: 0,
-              showSelectedLabels: true,
-              showUnselectedLabels: true,
-              backgroundColor: Colors.white,
-              selectedItemColor: Colors.indigo,
-              unselectedItemColor: Colors.grey,
-              items: const [
-                BottomNavigationBarItem(
-                  label: 'Home',
-                  icon: Icon(Icons.home),
-                ),
-                BottomNavigationBarItem(
-                  label: 'News',
-                  icon: Icon(Icons.person),
-                ),
-                BottomNavigationBarItem(
-                  label: 'History',
-                  icon: Icon(Icons.history),
-                ),
+          return SafeArea(
+            child: Scaffold(
+              // appBar: AppBar(
+              //   title: const Text('Vimeo video player'),
+              // ),
+                persistentFooterButtons: [
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Divider(height: 0),
+                  ],
+                )
               ],
+              body: PageView(
+                controller: pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: _widgetOptions,
+              ),
+              bottomNavigationBar: BottomNavigationBar(
+                currentIndex: state,
+                onTap: (index) {
+                  context
+                      .read<NavigationCubit>()
+                      .onItemTapped(index);
+                  changeTab(index);
+                },
+                elevation: 0,
+                showSelectedLabels: true,
+                showUnselectedLabels: true,
+                // backgroundColor: Colors.black,
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.grey,
+                items: const [
+                  BottomNavigationBarItem(
+                    label: 'Home',
+                    icon: Icon(Icons.home),
+                  ),
+                  BottomNavigationBarItem(
+                    label: 'News',
+                    icon: Icon(Icons.person),
+                  ),
+                  BottomNavigationBarItem(
+                    label: 'History',
+                    icon: Icon(Icons.history),
+                  ),
+                ],
+              ),
             ),
           );
         },

@@ -1,7 +1,9 @@
 import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vimeo_player/data/data.dart';
 import 'package:vimeo_player/home/cubit/videoplayer_cubit.dart';
+import 'package:vimeo_player/widgets/video_card.dart';
 class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key}) : super(key: key);
 
@@ -47,34 +49,23 @@ class DetailsPageState extends State<DetailsPage> {
             ),
           ],
         ),
-        Flexible(
-          flex: 10,
-          child: SizedBox(
-            height: 100,
-            child: ListView.builder(
-              itemCount: 10,
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              itemBuilder: (context, index) {
-                return Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        'Link ${index+1} |',
-                        style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: VerticalDivider(thickness: 1, color: Colors.white),
-                    )
-                  ],
-                );
-              }),
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 10),
+            itemCount: suggestedVideos.length,
+            itemBuilder: (context, index) {
+              final video = suggestedVideos[index];
+              return GestureDetector(
+                onTap: () {},
+                child: VideoCard(
+                  video: video,
+                  hasPadding: true,
+                ),
+              );
+            },
           ),
-        ),
+        )
       ],
     );
   }

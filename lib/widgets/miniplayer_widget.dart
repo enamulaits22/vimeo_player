@@ -28,6 +28,7 @@ class MiniPlayerWidget extends StatelessWidget {
               minHeight: miniplayerHeight,
               maxHeight: MediaQuery.of(context).size.height,
               builder: (height, percentage) {
+                // log(percentage.toString());
                 if (height <= miniplayerHeight + 50.0) {
                   return Column(
                     children: [
@@ -35,7 +36,7 @@ class MiniPlayerWidget extends StatelessWidget {
                         children: [
                           SizedBox(
                             height: miniplayerHeight,
-                            width: 120.0,
+                            width: 150.0,
                             child: AspectRatio(
                               aspectRatio: 16 / 9,
                               child: BetterPlayer(controller: state.betterPlayerController!,

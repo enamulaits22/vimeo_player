@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:miniplayer/miniplayer.dart';
+import 'package:vimeo_player/data/data.dart';
 import 'package:vimeo_player/home/cubit/videoplayer_cubit.dart';
+import 'package:vimeo_player/widgets/custom_appbar.dart';
 import 'package:vimeo_player/widgets/miniplayer_widget.dart';
+import 'package:vimeo_player/widgets/video_card.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -31,21 +34,30 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           BlocBuilder<VideoPlayerCubit, VideoPlayerState>(
             builder: (context, state) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        handlePlayVideo(state: state, context: context, videoID: "358296408");
-                      },
-                      child: const Text('video 1'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        handlePlayVideo(state: state, context: context, videoID: "560637260");
-                      },
-                      child: const Text('video 2'),
+              return Scaffold(
+                body: CustomScrollView(
+                  slivers: [
+                    const CustomSliverAppBar(),
+                    SliverPadding(
+                      padding: const EdgeInsets.only(bottom: 60.0),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            final video = videos[index];
+                            return GestureDetector(
+                              onTap: () {
+                                handlePlayVideo(
+                                  state: state,
+                                  context: context,
+                                  videoID: video.id,
+                                );
+                              },
+                              child: VideoCard(video: video),
+                            );
+                          },
+                          childCount: videos.length,
+                        ),
+                      ),
                     ),
                   ],
                 ),
