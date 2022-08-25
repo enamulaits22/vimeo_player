@@ -172,16 +172,20 @@ class Request {
 class Files {
     Files({
       required this.hls,
+      required this.progressive,
     });
 
     final Hls hls;
+    final List<Progressive>? progressive;
 
     factory Files.fromJson(Map<String, dynamic> json) => Files(
         hls: Hls.fromJson(json["hls"]),
+        progressive: json["progressive"] == null ? [] : List<Progressive>.from(json["progressive"].map((x) => Progressive.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "hls": hls.toJson(),
+        "progressive": List<dynamic>.from(progressive!.map((x) => x.toJson())),
     };
 }
 
@@ -218,6 +222,22 @@ class Cdns {
     Map<String, dynamic> toJson() => {
         "akfire_interconnect_quic": akfireInterconnectQuic.toJson(),
         "fastly_skyfire": fastlySkyfire.toJson(),
+    };
+}
+
+class Progressive {
+    Progressive({
+      required this.url,
+    });
+
+    final String? url;
+
+    factory Progressive.fromJson(Map<String, dynamic> json) => Progressive(
+        url: json["url"] ?? "",
+    );
+
+    Map<String, dynamic> toJson() => {
+        "url": url!,
     };
 }
 

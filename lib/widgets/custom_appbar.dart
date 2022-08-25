@@ -10,7 +10,7 @@ class CustomSliverAppBar extends StatelessWidget {
       leadingWidth: 100.0,
       leading: Padding(
         padding: const EdgeInsets.only(left: 12.0),
-        child: Image.network('https://raw.githubusercontent.com/MarcusNg/flutter_youtube_ui/main/assets/yt_logo_dark.png'),
+        child: Image.network('https://cutewallpaper.org/24/vimeo-logo-png/vimeo-on-demand-logo-png-transparent-png-672x288-free-download-on-nicepng.png'),
       ),
       actions: [
         IconButton(

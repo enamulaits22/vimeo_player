@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           (context, index) {
                             final video = videos[index];
                             return GestureDetector(
-                              onTap: () {
+                              onTap: () async {
                                 handlePlayVideo(
                                   state: state,
                                   context: context,

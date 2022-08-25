@@ -7,6 +7,7 @@ class VideoPlayerState {
   bool isSupportedPIP;
   String videoTitle;
   String videoAuthor;
+  String downloadUrl;
   
   VideoPlayerState({
     this.betterPlayerController,
@@ -15,6 +16,7 @@ class VideoPlayerState {
     this.isSupportedPIP = true,
     this.videoTitle = '',
     this.videoAuthor = '',
+    this.downloadUrl = '',
   });
 }
 
